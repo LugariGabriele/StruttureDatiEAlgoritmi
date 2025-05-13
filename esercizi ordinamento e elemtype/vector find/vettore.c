@@ -2,9 +2,9 @@
 #include "elemtype.h"
 #include <stdlib.h>
 
-int ElemCompare(const ElemType* a, const ElemType* b) {
-	return (*a) - (*b);
-}
+//int ElemCompare(const ElemType* a, const ElemType* b) {
+//	return (*a) - (*b);
+//}
 
 int VectorFind(const Vector* v, const ElemType* e) {
 

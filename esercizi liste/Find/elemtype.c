@@ -36,7 +36,8 @@ void ElemDelete(ElemType *e) {
 }
 
 int ElemRead(FILE *f, ElemType *e) {
-    return fscanf(f, "%d", e);
+
+    return fscanf(f, "%d", &e->number);
 }
 
 int ElemReadStdin(ElemType *e) {

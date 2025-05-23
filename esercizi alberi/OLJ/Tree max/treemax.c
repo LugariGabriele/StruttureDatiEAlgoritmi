@@ -38,53 +38,53 @@ const ElemType* TreeMax(const Node* n) {
 	return max_val; //O(n) vista completa 
 }
 
-
-int main(void) {
-
-
-    // Costruisco un BST
-    //        10
-    //       /  \
-    //      5    15
-    //          /  \
-    //         12   20
-
-    Node* bst = TreeCreateRoot(&(ElemType) { 10 },
-        TreeCreateRoot(&(ElemType) { 5 }, NULL, NULL),
-        TreeCreateRoot(&(ElemType) { 15 },
-            TreeCreateRoot(&(ElemType) { 12 }, NULL, NULL),
-            TreeCreateRoot(&(ElemType) { 20 }, NULL, NULL)
-        )
-    );
-
-    // Costruisco un albero NON BST
-    //        10
-    //       /  \
-    //     30    20
-    //     /
-    //    50
-
-    Node* non_bst = TreeCreateRoot(&(ElemType) { 10 },
-        TreeCreateRoot(&(ElemType) { 30 },
-            TreeCreateRoot(&(ElemType) { 50 }, NULL, NULL),
-            NULL
-        ),
-        TreeCreateRoot(&(ElemType) { 20 }, NULL, NULL)
-    );
-
-    // Test BST
-    const ElemType* max_bst = BstTreeMax(bst);
-    printf("Massimo in BST: ");
-    if (max_bst != NULL) ElemWriteStdout(max_bst);
-    else printf("NULL");
-    printf("\n");
-
-    // Test generico
-    const ElemType* max_non_bst = TreeMax(non_bst);
-    printf("Massimo in albero generico: ");
-    if (max_non_bst != NULL) ElemWriteStdout(max_non_bst);
-    else printf("NULL");
-    printf("\n");
-
-
-}
+//
+//int main(void) {
+//
+//
+//    // Costruisco un BST
+//    //        10
+//    //       /  \
+//    //      5    15
+//    //          /  \
+//    //         12   20
+//
+//    Node* bst = TreeCreateRoot(&(ElemType) { 10 },
+//        TreeCreateRoot(&(ElemType) { 5 }, NULL, NULL),
+//        TreeCreateRoot(&(ElemType) { 15 },
+//            TreeCreateRoot(&(ElemType) { 12 }, NULL, NULL),
+//            TreeCreateRoot(&(ElemType) { 20 }, NULL, NULL)
+//        )
+//    );
+//
+//    // Costruisco un albero NON BST
+//    //        10
+//    //       /  \
+//    //     30    20
+//    //     /
+//    //    50
+//
+//    Node* non_bst = TreeCreateRoot(&(ElemType) { 10 },
+//        TreeCreateRoot(&(ElemType) { 30 },
+//            TreeCreateRoot(&(ElemType) { 50 }, NULL, NULL),
+//            NULL
+//        ),
+//        TreeCreateRoot(&(ElemType) { 20 }, NULL, NULL)
+//    );
+//
+//    // Test BST
+//    const ElemType* max_bst = BstTreeMax(bst);
+//    printf("Massimo in BST: ");
+//    if (max_bst != NULL) ElemWriteStdout(max_bst);
+//    else printf("NULL");
+//    printf("\n");
+//
+//    // Test generico
+//    const ElemType* max_non_bst = TreeMax(non_bst);
+//    printf("Massimo in albero generico: ");
+//    if (max_non_bst != NULL) ElemWriteStdout(max_non_bst);
+//    else printf("NULL");
+//    printf("\n");
+//
+//
+//}

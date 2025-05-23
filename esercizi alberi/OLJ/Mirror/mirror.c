@@ -22,44 +22,46 @@ bool TreeIsMirror(const Node* t) {
 	return isMirror(t->left, t->right);
 }
 
-int main(void) {
 
-	// Albero simmetrico:
-   //         1
-   //       /   \
-    //      2     2
-	//     / \   / \
-    //    3   4 4   3
-
-	Node* symmetric = TreeCreateRoot(&(ElemType) { 1 },
-		TreeCreateRoot(&(ElemType) { 2 },
-			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL),
-			TreeCreateRoot(&(ElemType) { 4 }, NULL, NULL)),
-		TreeCreateRoot(&(ElemType) { 2 },
-			TreeCreateRoot(&(ElemType) { 4 }, NULL, NULL),
-			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL))
-	);
-
-
-	// Albero non simmetrico:
-	//         1
-	//       /   \
-	//      2     2
-	//        \     \
-	 //        3     3
-
-	Node* non_symmetric = TreeCreateRoot(&(ElemType) { 1 },
-		TreeCreateRoot(&(ElemType) { 2 },
-			NULL,
-			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL)),
-		TreeCreateRoot(&(ElemType) { 2 },
-			NULL,
-			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL))
-	);
-
-	printf("Albero 1 %s simmetrico.\n", TreeIsMirror(symmetric) ? "è" : "non è");
-	printf("Albero 2 %s simmetrico.\n", TreeIsMirror(non_symmetric) ? "è" : "non è");
-
-	TreeDelete(symmetric);
-	TreeDelete(non_symmetric);
-}
+//
+//int main(void) {
+//
+//	// Albero simmetrico:
+//   //         1
+//   //       /   \
+//    //      2     2
+//	//     / \   / \
+//    //    3   4 4   3
+//
+//	Node* symmetric = TreeCreateRoot(&(ElemType) { 1 },
+//		TreeCreateRoot(&(ElemType) { 2 },
+//			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL),
+//			TreeCreateRoot(&(ElemType) { 4 }, NULL, NULL)),
+//		TreeCreateRoot(&(ElemType) { 2 },
+//			TreeCreateRoot(&(ElemType) { 4 }, NULL, NULL),
+//			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL))
+//	);
+//
+//
+//	// Albero non simmetrico:
+//	//         1
+//	//       /   \
+//	//      2     2
+//	//        \     \
+//	 //        3     3
+//
+//	Node* non_symmetric = TreeCreateRoot(&(ElemType) { 1 },
+//		TreeCreateRoot(&(ElemType) { 2 },
+//			NULL,
+//			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL)),
+//		TreeCreateRoot(&(ElemType) { 2 },
+//			NULL,
+//			TreeCreateRoot(&(ElemType) { 3 }, NULL, NULL))
+//	);
+//
+//	printf("Albero 1 %s simmetrico.\n", TreeIsMirror(symmetric) ? "è" : "non è");
+//	printf("Albero 2 %s simmetrico.\n", TreeIsMirror(non_symmetric) ? "è" : "non è");
+//
+//	TreeDelete(symmetric);
+//	TreeDelete(non_symmetric);
+//}

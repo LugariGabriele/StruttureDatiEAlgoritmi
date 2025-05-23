@@ -1,8 +1,6 @@
 #include "tree.h"
 
 
-
-
 Node* BstInsert(const ElemType* e, Node* n) {
 
 	if (TreeIsEmpty(n))
@@ -61,30 +59,29 @@ Node* BstInsertRec(const ElemType* e, Node* n) {
 	return n;
 }
 
-
-int main(void) {
-
-	Node* iterative_bst = TreeCreateEmpty();
-	Node* recursive_bst = TreeCreateEmpty();
-
-	ElemType values[] = { 4, 3, 7, 1, 5, 8, 2 };
-	int n = sizeof(values) / sizeof(ElemType);
-
-	for (int i = 0; i < n; ++i) {
-		iterative_bst = BstInsert(&values[i], iterative_bst);
-		recursive_bst = BstInsertRec(&values[i], recursive_bst);
-	}
-
-	printf("BST iterativo (in-order): ");
-	TreeWriteStdoutInOrder(iterative_bst);
-	printf("\n");
-
-	printf("BST ricorsivo (in-order): ");
-	TreeWriteStdoutInOrder(recursive_bst);
-	printf("\n");
-
-	TreeDelete(iterative_bst);
-	TreeDelete(recursive_bst);
-
-
-}
+//
+//int main(void) {
+//
+//	Node* iterative_bst = TreeCreateEmpty();
+//	Node* recursive_bst = TreeCreateEmpty();
+//
+//	ElemType values[] = { 4, 3, 7, 1, 5, 8, 2 };
+//	int n = sizeof(values) / sizeof(ElemType);
+//
+//	for (int i = 0; i < n; ++i) {
+//		iterative_bst = BstInsert(&values[i], iterative_bst);
+//		recursive_bst = BstInsertRec(&values[i], recursive_bst);
+//	}
+//
+//	printf("BST iterativo (in-order): ");
+//	TreeWriteStdoutInOrder(iterative_bst);
+//	printf("\n");
+//
+//	printf("BST ricorsivo (in-order): ");
+//	TreeWriteStdoutInOrder(recursive_bst);
+//	printf("\n");
+//
+//	TreeDelete(iterative_bst);
+//	TreeDelete(recursive_bst);
+//
+//

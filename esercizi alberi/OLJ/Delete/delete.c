@@ -3,98 +3,66 @@
 
 Node* DeleteBstNode(Node* n, const ElemType* key) {
 
-	if (n == NULL) return NULL;
+    if (n == NULL) return NULL;
 
+    Node* parent = NULL;
+    Node* curr = n;
 
-	Node* parent = NULL;
-	Node* curr = n;
+    // Trova il nodo da eliminare e il suo genitore
+    while (curr != NULL && ElemCompare(key, &curr->value) != 0) {
+        parent = curr;
+        if (ElemCompare(key, &curr->value) < 0) // key < valore → cerco a sx
+            curr = TreeLeft(curr);
+        else                                   // key > valore → cerco a dx
+            curr = TreeRight(curr);
+    }
 
+    // Nodo non trovato
+    if (curr == NULL) return n;
 
+    // CASO 1: nodo da eliminare è foglia (0 figli)
+    if (TreeIsLeaf(curr)) {
+        if (parent == NULL) {
+            // Era la radice
+            return NULL;
+        }
+        // Scollega dal genitore
+        if (parent->left == curr) parent->left = NULL;
+        else                       parent->right = NULL;
+    }
 
-	// Trova il nodo da eliminare e il suo genitore
-	while (curr != NULL && ElemCompare(key, &curr->value) != 0) {
-		parent = curr;
+    // CASO 2: nodo da eliminare ha un solo figlio
+    else if (curr->left == NULL || curr->right == NULL) {
+        Node* child = (curr->left != NULL) ? curr->left : curr->right;
+        if (parent == NULL) {
+            // Sostituisce la radice
+            return child;
+        }
+        // Ricollega il figlio al genitore
+        if (parent->left == curr) parent->left = child;
+        else                       parent->right = child;
+    }
 
-		if (ElemCompare(key, &curr->value) < 0) // valore > key quindi cerco a sx
-		{
-			curr = TreeLeft(curr);
-		}
+    // CASO 3: nodo da eliminare ha due figli → usa il PREDECESSORE in-order
+    else {
+        // cerco predecessore (elemento più a destra di sottoalbero SX)
+        Node* pred = curr->left;
+        Node* pred_parent = curr;
+        while (pred->right != NULL) {
+            pred_parent = pred;
+            pred = pred->right;
+        }
 
-		else // key> quindi vado a dx
-		{
-			curr = TreeRight(curr);
-		}
-	}
+        // Copia il valore del predecessore nel nodo da eliminare
+        curr->value = pred->value;
 
-	// Nodo non trovato
-	if (curr == NULL) {
-		return n;
-	}
+        // Rimuovo il predecessore dalla sua posizione
+        Node* pred_child = pred->left;  // il predecessore non ha figlio destro
+        if (pred_parent->left == pred)   // pred era figlio SX di pred_parent
+            pred_parent->left = pred_child;
+        else                             // pred era figlio DX
+            pred_parent->right = pred_child;
+    }
 
-
-	bool delete_pos_left = parent->left == curr ? 1 : 0;
-
-
-	// CASO 1: nodo da eliminare è foglia(quindi ha 0 figli)
-
-	if (TreeIsLeaf(curr))
-	{
-		// devo capire da che lato di parent è il figlio da eliminare
-		if (delete_pos_left)
-		{
-			parent->left = NULL;
-		}
-		else
-		{
-			parent->right = NULL;
-		}
-	}
-
-
-	//CASO 2: nodo da eliminare ha un figlio
-	else if (curr->left == NULL || curr->right == NULL)
-	{
-		Node* child = (curr->left != NULL) ? curr->left : curr->right;
-		if (delete_pos_left)
-		{
-			parent->left = child;
-		}
-
-		else
-		{
-			parent->right = child;
-		}
-	}
-
-
-	//CASO 3: nodo da eliminare ha due figli
-	else
-	{
-		//cerco sucessore (elemento più a sinistra di sottoalbero dx)
-		Node* succ = curr->right;
-		Node* succ_parent = curr;
-
-
-		while (succ->left != NULL) { // vado più a sx possibile
-			succ_parent = succ;
-			succ = succ->left;
-		}
-
-		// Copia il valore del successore nel nodo da eliminare
-		curr->value = succ->value;
-
-
-		//prendo figlio dx di successore se lo ha e lo metto dove era sucessore (in caso di foglia non fa niente)
-
-		bool succ_pos = succ_parent->left == succ ? 1 : 0;
-
-		Node* succ_child = succ->right;
-		if (succ_pos) // succ era a sx del padre
-			succ_parent->left = succ_child;
-		else
-			succ_parent->right = succ_child;
-
-	}
-
-	return n;
+    return n;
 }
